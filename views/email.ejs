@@ -1,0 +1,32 @@
+<div class="container mt-4">
+    <h1>Email Reply Generator</h1>
+    <form action="/reply" method="post">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email to reply:</label>
+        <textarea name="email" id="email" cols="30" rows="10" class="form-control"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <div class="container mt-5">
+    <hr>
+    <h2>Generated Emails</h2>
+    <ul class="list-group mt-3">
+      <% emails.forEach(email => { %>
+      <li class="list-group-item">
+        <div class="fw-bold">
+          <h5><b>Input Email</b></h5>
+        </div>
+        <div class="mb-2"><%= email.inputEmail %></div>
+        <div class="fw-bold">
+          <h5><b>Generated Reply</b></h5>
+        </div>
+        <div><i><%= email.outputEmail %></i></div>
+        <form action="/emailReply/<%= email._id %>?_method=DELETE" method="post">
+          <button type="submit" class="btn btn-sm btn-danger mt-3">Delete</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+  </div>
+  
